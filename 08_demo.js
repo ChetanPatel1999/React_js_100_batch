@@ -1,6 +1,5 @@
 export let a = 12;   // name export
 let name = "chetan";
-let city="indore"
 export let height = 56.78;
 
 export function add(a, b) {
