@@ -9,7 +9,7 @@ const Card = ( ) => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             <Button />
         </div>
-    )
+    ) 
 }
 
 export default Card
