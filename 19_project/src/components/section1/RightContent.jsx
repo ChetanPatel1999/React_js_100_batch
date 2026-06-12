@@ -6,6 +6,6 @@ const RightContent = () => {
 
         </div>
     )
-}   
+}
 
 export default RightContent
