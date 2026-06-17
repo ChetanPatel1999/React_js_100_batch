@@ -16,8 +16,21 @@ const App = () => {
     console.log("my name is : ", data)
   }
 
+  function changeValue(val) {
+    console.log(val)
+  }
+  function onScrolling(val) {
+    if (val > 0) {
+      console.log("page is scroling seeda  ")
+    }
+    else {
+      console.log("page is scroling ulta  ")
+    }
+  }
   return (
-    <div>
+    <div onWheel={(evt) => {
+      onScrolling(evt.deltaY)
+    }}>
       {/* <button onClick={printMsg}>click me!</button> */}
 
       <button onClick={() => {
@@ -43,9 +56,32 @@ const App = () => {
 
 
       <button onClick={(evt) => {
-        console.log(evt.target.innerText)
+        console.log(evt)
       }}>evt details</button>
+
+
+      <input onChange={(evt) => {
+        changeValue(evt.target.value)
+      }} type="text" placeholder='Enter Text here' />
+
+
+      <div className='my-div' onMouseMove={(evt) => {
+        console.log("x = ", evt.clientX, "y = ", evt.clientY)
+      }}  >
+      </div>
+
+      <div className='box' onClick={() => {
+        console.log("div is clicked")
+      }}>
+        <button onClick={(evt) => {
+          evt.stopPropagation();
+          console.log("button is clicked")
+        }}>click me </button>
+      </div>
+
+
     </div>
+
   )
 }
 

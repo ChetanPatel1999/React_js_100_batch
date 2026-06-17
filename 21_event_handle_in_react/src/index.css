@@ -16,3 +16,16 @@ input {
   height: 30px;
   margin: 20px;
 }
+
+.my-div {
+  background-color: red;
+  width: 400px;
+  height: 400px;
+  margin-left: 10px;
+}
+
+.box {
+  background-color: yellow;
+  width: 400px;
+  height: 2000px;
+}

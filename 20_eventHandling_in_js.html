@@ -8,17 +8,19 @@
 </head>
 
 <body>
+    <h1>hello chetan</h1>
     <button>click me!</button>
+
     <script>
         function printMSG() {
-            console.log("button is clicked")
+
         }
 
         let btn = document.querySelector("button")
 
         // btn.addEventListener("click", printMSG);
         btn.addEventListener("click", () => {
-            console.log("button is click")
+            document.querySelector("h1").innerText = "hello ram"
         });
 
 
