@@ -1,0 +1,47 @@
+/* * {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+} */
+
+.box {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 200px;
+    margin-top: 50px;
+    margin-left: 50px;
+    border-radius: 20px;
+}
+
+.c-button {
+    background-color: #222;
+    width: 120px;
+    height: 40px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 50px;
+    font-size: 16px;
+}
+
+.my-box {
+    width: 300px;
+    height: 100px;
+    background-color: red;
+    margin: 10px;
+}
+
+.my-div {
+    width: 300px;
+    height: 100px;
+    background-color: blue;
+    margin: 10px;
+}

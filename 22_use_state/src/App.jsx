@@ -1,16 +1,10 @@
-import React, { useState } from 'react'
-
+import Example1 from './components/Example1'
+import Example2 from './components/Example2'
+import Example3 from './components/Example3'
+import Example4 from './components/Example4'
 const App = () => {
-
-  const [num, setnum] = useState(50)
-  function changeValue() {
-    setnum(90)
-  }
   return (
-    <div>
-      <h1>value of num = {num}</h1>
-      <button onClick={changeValue} >change value</button>
-    </div>
+    <Example4 />
   )
 }
 
