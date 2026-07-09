@@ -8,11 +8,15 @@ import Navbar from './components/Navbar'
 import NotFoundPage from './pages/NotFoundPage'
 import Men from './pages/Men'
 import Women from './pages/Women'
+import Courses from './pages/Courses'
+import CoursesDetails from './pages/CoursesDetails'
+import Navbar2 from './components/Navbar2'
 
 const App = () => {
   return (
     <div>
       <Navbar />
+      <Navbar2 />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/joinus' element={<JoinUs />} />
@@ -23,6 +27,8 @@ const App = () => {
           <Route path='women' element={<Women />} />
         </Route>
         <Route path='*' element={<NotFoundPage />} />
+        <Route path='/courses' element={<Courses />} />
+        <Route path='/courses/:id' element={<CoursesDetails />} />
       </Routes>
     </div>
   )

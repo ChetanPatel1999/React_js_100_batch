@@ -57,3 +57,25 @@
   color: black;
   font-weight: 900;
 }
+
+.btn {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+}
+
+.btn:active {
+  transform: scale(95%);
+}
+
+.btn-box {
+  background-color: rgb(231, 62, 62);
+  display: flex;
+  justify-content: start;
+  padding: 20px;
+  gap:20px;
+}
