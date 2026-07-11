@@ -1,0 +1,38 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+.dark {
+  background-color: rgb(3, 54, 52);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.light {
+  background-color: lightseagreen;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.nav2 {
+  display: flex;
+  gap: 50px;
+}
+
+button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  margin: 20px;
+}
