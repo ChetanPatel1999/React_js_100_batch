@@ -6,7 +6,19 @@ const Game = () => {
     const [data, setdata] = useState(["", "", "", "", "", "", "", "", ""])
     const [count, setcount] = useState(0)
     const [lock, setlock] = useState(false)
-    const myref = useRef();
+    const myref = useRef(null);
+
+    const box1 = useRef(null);
+    const box2 = useRef(null);
+    const box3 = useRef(null);
+    const box4 = useRef(null);
+    const box5 = useRef(null);
+    const box6 = useRef(null);
+    const box7 = useRef(null);
+    const box8 = useRef(null);
+    const box9 = useRef(null);
+
+    const divs = [box1, box2, box3, box4, box5, box6, box7, box8, box9];
     const toggle = (e, num) => {
         if (lock) {
             console.log("i am run")
@@ -65,12 +77,15 @@ const Game = () => {
         else {
             myref.current.innerHTML = `congratulation <img class='img' src=${circle_icon} /> is winner `
         }
+        setdata(["", "", "", "", "", "", "", "", ""]);
     }
     function reset() {
         myref.current.innerHTML = `Tic Tac Toe In
                 <span class='my-span'> React</span>`
-
-        
+        divs.map((div) => {
+            div.current.innerHTML = "";
+        })
+        setlock(false);
     }
     return (
         <div className='flex flex-col justify-center items-center'>
@@ -78,19 +93,21 @@ const Game = () => {
                 <span className='text-green-300' > React</span></h1>
             <div className='flex flex-col gap-1' >
                 <div className='flex gap-1 justify-center items-center'>
-                    <div onClick={(e) => toggle(e, 0)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
-                    <div onClick={(e) => toggle(e, 1)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
-                    <div onClick={(e) => toggle(e, 2)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
+                    <div ref={box1} onClick={(e) => toggle(e, 0)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
+                    <div ref={box2} onClick={(e) => toggle(e, 1)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
+                    <div ref={box3} onClick={(e) => toggle(e, 2)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
                 </div>
                 <div className='flex gap-1 justify-center items-center'>
-                    <div onClick={(e) => toggle(e, 3)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
-                    <div onClick={(e) => toggle(e, 4)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
-                    <div onClick={(e) => toggle(e, 5)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
+                    <div ref={box4} onClick={(e) => toggle(e, 3)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' >
+
+                    </div>
+                    <div ref={box5} onClick={(e) => toggle(e, 4)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
+                    <div ref={box6} onClick={(e) => toggle(e, 5)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
                 </div>
                 <div className='flex gap-1 justify-center items-center'>
-                    <div onClick={(e) => toggle(e, 6)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
-                    <div onClick={(e) => toggle(e, 7)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
-                    <div onClick={(e) => toggle(e, 8)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
+                    <div ref={box7} onClick={(e) => toggle(e, 6)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
+                    <div ref={box8} onClick={(e) => toggle(e, 7)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
+                    <div ref={box9} onClick={(e) => toggle(e, 8)} className='w-30 h-30 bg-gray-700 rounded flex justify-center items-center' ></div>
                 </div>
             </div>
             <button onClick={reset}
