@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import categories from '../category'
 import Card from '../components/Card'
 import { food_items } from '../food'
+import { dataContext } from '../context/UserDataContext'
+import { RxCross2 } from "react-icons/rx";
 
 
 const Home = () => {
-    const [foodCategories, setfoodCategories] = useState(food_items)
+
+    const { foodCategories, setfoodCategories, inputData, showCard, setshowCard } = useContext(dataContext);
+
+
     function filter(category) {
         if (category == "All") {
             setfoodCategories(food_items);
@@ -19,10 +24,15 @@ const Home = () => {
             setfoodCategories(newlist);
         }
     }
+    useEffect(() => {
+        let newList = food_items.filter((item) => item.food_name.toLowerCase().includes(inputData.toLowerCase()))
+        setfoodCategories(newList);
+    }, [inputData])
     return (
         <div className='w-full min-h-screen bg-slate-200 py-2 px-4 md:py-4 md:px-8'>
             <Nav />
-            <div className='flex flex-wrap justify-center gap-5 mt-5 '>
+
+            {inputData ? null : <div className='flex flex-wrap justify-center gap-5 mt-5 '>
                 {categories.map((item, index) => {
                     return (
                         <div
@@ -34,7 +44,8 @@ const Home = () => {
                         </div>
                     )
                 })}
-            </div>
+            </div>}
+
 
             <div className='flex flex-wrap justify-center items-center mt-8 gap-5 mb-4 '>
                 {foodCategories.map((item, index) => {
@@ -42,6 +53,17 @@ const Home = () => {
                         <Card key={index} name={item.food_name} price={item.price} type={item.food_type} id={item.id} image={item.food_image} />
                     )
                 })}
+            </div>
+
+            {/* shoping card render code */}
+
+            <div className={(showCard ? "translate-x-0" : "translate-x-full") + ' bg-white transition-all duration-500 w-[40vw]  h-screen fixed top-0 right-0 shadow-md p-6 '}>
+                <header className='flex justify-between items-center text-green-500 font-semibold text-lg'>
+                    <span>Order item</span>
+                    <RxCross2
+                        onClick={() => setshowCard(false)}
+                        className='w-7 h-7 cursor-pointer hover:text-gray-600 transition-all duration-300' />
+                </header>
             </div>
 
         </div>
