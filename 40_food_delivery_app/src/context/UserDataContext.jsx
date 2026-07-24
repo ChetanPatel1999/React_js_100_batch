@@ -4,7 +4,7 @@ export const dataContext = createContext();
 const UserDataContext = ({ children }) => {
     const [foodCategories, setfoodCategories] = useState(food_items)
     const [inputData, setinputData] = useState("")
-    const [showCard, setshowCard] = useState(false)
+    const [showCard, setshowCard] = useState(true)
     const data = {
         foodCategories,
         setfoodCategories,
