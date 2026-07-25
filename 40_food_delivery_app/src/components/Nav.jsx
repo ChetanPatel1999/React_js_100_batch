@@ -3,7 +3,7 @@ import { MdFastfood } from "react-icons/md";
 import { IoMdSearch } from "react-icons/io";
 import { LuShoppingBag } from "react-icons/lu";
 import { dataContext } from '../context/UserDataContext';
-const Nav = () => {
+const Nav = ({totalQuantity}) => {
     const { inputData, setinputData, showCard, setshowCard } = useContext(dataContext)
     console.log(inputData)
 
@@ -22,7 +22,7 @@ const Nav = () => {
             <div
                 onClick={() => setshowCard(true)}
                 className='w-15 h-15 cursor-pointer bg-white flex justify-center items-center rounded-md shadow-md relative'>
-                <span className='absolute top-0 right-1.5 font-bold text-green-500' >0</span>
+                <span className='absolute top-0 right-1.5 font-bold text-green-500' >{totalQuantity}</span>
                 <LuShoppingBag className='text-green-500 text-3xl' />
             </div>
         </div>

@@ -6,13 +6,23 @@ import { food_items } from '../food'
 import { dataContext } from '../context/UserDataContext'
 import { RxCross2 } from "react-icons/rx";
 import Card2 from '../components/Card2'
+import { toast } from 'react-toastify'
 
 
 const Home = () => {
 
-    const { foodCategories, setfoodCategories, inputData, showCard, setshowCard } = useContext(dataContext);
+    const { foodCategories, setfoodCategories, inputData, showCard, setshowCard, cart, setcart } = useContext(dataContext);
 
-    const [cart, setcart] = useState([])
+
+    const totalQuantity = cart.reduce((total, item) => item.quantity + total, 0);
+
+    const subTotal = cart.reduce((total, item) => item.quantity * item.price + total, 0);
+
+    const deliveryFees = cart.length > 0 ? 20 : 0;
+
+    const texes = subTotal * 0.05;
+
+    const total = subTotal + texes + deliveryFees;
 
     const addToCard = (food) => {
 
@@ -21,14 +31,14 @@ const Home = () => {
             const newCart = cart.map((item) => {
                 return item.id == food.id ? { ...item, quantity: item.quantity + 1 } : item;
             })
-            console.log(newCart)
+
             setcart(newCart);
         }
         else {
             setcart([...cart, food])
         }
 
-
+        setshowCard(true)
     }
 
     function filter(category) {
@@ -49,7 +59,7 @@ const Home = () => {
     }, [inputData])
     return (
         <div className='w-full min-h-screen bg-slate-200 py-2 px-4 md:py-4 md:px-8'>
-            <Nav />
+            <Nav totalQuantity={totalQuantity} />
 
             {inputData ? null : <div className='flex flex-wrap justify-center gap-5 mt-5 '>
                 {categories.map((item, index) => {
@@ -67,6 +77,12 @@ const Home = () => {
 
 
             <div className='flex flex-wrap justify-center items-center mt-8 gap-5 mb-4 '>
+
+                {foodCategories.length == 0 &&
+                    <div className='text-green-500 mt-20 text-4xl font-semibold'>
+                        No Dish Found
+                    </div>
+                }
                 {foodCategories.map((item, index) => {
                     return (
                         <Card key={index} addToCard={addToCard} name={item.food_name} price={item.price} type={item.food_type} quantity={item.food_quantity} id={item.id} image={item.food_image} />
@@ -90,29 +106,37 @@ const Home = () => {
                     })
                 }
 
-                <div className='mt-4'>
+                {cart.length > 0 ? <div className='mt-4'>
                     <hr></hr>
                     <div className='flex mt-2 justify-between items-center'>
                         <h1>Subtotal</h1>
-                        <h1 className='text-green-500'>Rs 399/-</h1>
+                        <h1 className='text-green-500'>Rs {subTotal.toFixed(2)}/-</h1>
                     </div>
 
                     <div className='flex mt-2 justify-between items-center'>
                         <h1>Delivery Fess</h1>
-                        <h1 className='text-green-500'>Rs 20/-</h1>
+                        <h1 className='text-green-500'>Rs {deliveryFees.toFixed(2)}/-</h1>
                     </div>
 
                     <div className='flex mt-2 justify-between items-center'>
                         <h1>Texes</h1>
-                        <h1 className='text-green-500'>Rs 1.995/-</h1>
+                        <h1 className='text-green-500'>Rs {texes.toFixed(2)}/-</h1>
                     </div>
                     <hr className='mt-2'></hr>
                     <div className='flex mt-2 justify-between items-center'>
                         <h1 className='text-xl font-bold'>Total</h1>
-                        <h1 className='text-green-500 text-xl font-bold'>Rs 420/-</h1>
+                        <h1 className='text-green-500 text-xl font-bold'>Rs {total.toFixed(2)}/-</h1>
                     </div>
-                    <button className='bg-green-500 text-white w-full rounded-md mt-2 h-10 font-bold'>Place Order</button>
+                    <button
+                    onClick={()=>toast.success("Order is placed...")}
+                    className='bg-green-500 text-white w-full rounded-md mt-2 h-10 font-bold'>Place Order</button>
                 </div>
+                    :
+                    <div className='w-full mt-15   flex justify-center text-green-500 text-4xl font-semibold'>
+                        Cart is Empty
+                    </div>
+                }
+
             </div>
 
         </div>

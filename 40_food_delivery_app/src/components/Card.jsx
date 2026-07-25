@@ -1,6 +1,7 @@
 import React from 'react'
 import { LuLeafyGreen } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi";
+import { toast } from 'react-toastify';
 const Card = ({ addToCard, name, id, price, type, image, quantity }) => {
     return (
         <div className='w-58  border-3 hover:border-green-500 border-transparent transition-all duration-300 shadow-md h-70 p-4 bg-white rounded-md flex flex-col gap-2'>
@@ -19,7 +20,10 @@ const Card = ({ addToCard, name, id, price, type, image, quantity }) => {
                 </div>
             </div>
             <button
-                onClick={() => addToCard({ name, id, price, image, quantity })}
+                onClick={() => {
+                    addToCard({ name, id, price, image, quantity })
+                    toast.success(name + " added...");
+                }}
                 className='bg-green-500 cursor-pointer hover:bg-green-400 transition-all duration-300 text-white font-medium text-lg py-1 rounded-md'>Add to Dish</button>
         </div >
     )
